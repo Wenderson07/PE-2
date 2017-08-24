@@ -32,14 +32,12 @@ int nota_valida(double nota1,double nota2,double nota3){
 	else if(nota1 < nota2 && nota2<nota3){
 		nota_real = nota2;
 	}
-	printf("A nota real eh : %.2lf\n",nota_real);
 	return nota_real;
 }
 
 
 void nota_final(double nota_da_originalidade,double nota_da_beleza,double *x){
 	*x = (0.6 * nota_da_originalidade) + (0.4 * nota_da_beleza);
-	printf("Nota = %.2lf\n",*x);
 }
 
 
@@ -52,10 +50,10 @@ int main()
 	scanf("%d",&candidato);
 	while(candidato != 0)
 	{
-		printf("Digite as notas da originalidade\n");
+		printf("Digite as notas da originalidade: \n");
 		scanf("%lf%lf%lf",&nota1,&nota2,&nota3);
 		nota_real_originalidade = nota_valida(nota1,nota2,nota3);
-		printf("Digite a notas da beleza\n");
+		printf("Digite a notas da beleza: \n");
 		scanf("%lf%lf%lf",&nota1,&nota2,&nota3);
 		nota_real_beleza = nota_valida(nota1,nota2,nota3);
 		nota_final(nota_real_originalidade,nota2,&resultado);
@@ -88,3 +86,4 @@ int main()
 	
 	return 0;
 }
+
