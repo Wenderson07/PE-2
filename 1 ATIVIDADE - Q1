@@ -1,0 +1,110 @@
+/* 2 critérios distintos:
+originalidade e beleza. A nota final do candidato é calculada do seguinte modo: (2.0)
+(0.6 * nota_da_originalidade + 0.4 * nota_da_beleza)
+são desprezadas a maior e a menor nota de cada critério.
+ Faça um programa, que leia, para cada candidato,  seu número de inscrição (inteiro) e suas 3
+notas (reais) de cada critério, exibindo sua nota final.o Ao término do programa, também
+deve ser exibido o número de inscrição do candidato vencedor. A entrada de dados é
+
+O seu programa deve, obrigatoriamente, utilizar as seguintes funções e não ter variáveis
+globais:
+• função nota_valida que receba 3 notas de um critério por parâmetro e retorna
+apenas a nota válida. Caso existam pelo menos duas notas repetidas, ela será a
+nota válida.
+• função nota_final que calcula a nota final do candidato. Esta função deve ser
+void.
+• função main responsável por toda entrada e saída de dados e por chamar
+adequadamente as funções nota_valida e nota_final.
+ENTRADA: nUMERO DO CANDIDATO e é finalizada pela digitação do valor 0 (zero) como número do candidato.
+O numero menor de inscriação ganha;
+*/
+#include <stdio.h>
+int nota_valida(double nota1,double nota2,double nota3){
+	double nota_real;
+	if(nota1 == nota2 ){
+		nota_real = nota1;
+	}
+	else if(nota1 == nota3){
+		nota_real = nota1;
+	}
+	else if(nota2 == nota3){
+		nota_real = nota2;
+	}
+	else if(nota1 >nota2 && nota2 >nota3){
+		nota_real= nota2;
+	}
+	else if(nota1 > nota2 && nota2 < nota3){
+		if(nota1 > nota3){
+			nota_real = nota3;
+		}
+		else
+		{
+			nota_real = nota1;
+		}
+	}
+	else if(nota1 < nota2 && nota2 > nota3){
+		if(nota1 < nota3){
+			nota_real = nota3;}
+			else{
+				nota_real = nota1;
+			}
+	}
+	else if(nota1 < nota2 && nota2<nota3){
+		nota_real = nota2;
+	}
+	printf("A nota real eh : %.2lf\n",nota_real);
+	return nota_real;
+}
+
+
+void nota_final(double nota_da_originalidade,double nota_da_beleza,double *x){
+	*x = (0.6 * nota_da_originalidade) + (0.4 * nota_da_beleza);
+	printf("Nota = %.2lf\n",*x);
+}
+
+
+int main()
+{
+	double nota1,nota2,nota3,nota_real_originalidade,nota_real_beleza,*resultado;
+	int candidato,vencedor,candidato_anterior;
+	double nota_anterior,nota_atual,count = 0;
+	printf("Digite o numero do candidato: \n");
+	scanf("%d",&candidato);
+	while(candidato != 0)
+	{
+		printf("Digite as notas da originalidade\n");
+		scanf("%lf%lf%lf",&nota1,&nota2,&nota3);
+		nota_real_originalidade = nota_valida(nota1,nota2,nota3);
+		printf("Digite a notas da beleza");
+		scanf("%lf%lf%lf",&nota1,&nota2,&nota3);
+		nota_real_beleza = nota_valida(nota1,nota2,nota3);
+		nota_final(nota_real_originalidade,nota2,&resultado);
+		nota_atual = resultado;
+		if(count == 0){
+			nota_anterior = nota_atual;
+			vencedor = candidato;
+			candidato_anterior = candidato;		}
+		if(nota_atual >= nota_anterior && count != 0){   
+			vencedor = candidato;
+			if(nota_atual == nota_anterior){
+				if(candidato_anterior < candidato){
+					vencedor = candidato_anterior;
+				}
+				else
+				{
+					vencedor = candidato;
+				}
+			}
+		}
+		else
+		{
+			vencedor = candidato_anterior;
+			nota_atual = nota_anterior;
+		}
+		printf("Atualmente o vencedor eh %d com a nota %.2lf\n",vencedor,nota_atual);
+		printf("Digite o numero do proximo candidato: \n");
+		scanf("%d",&candidato);	
+	}
+	
+	return 0;
+}
