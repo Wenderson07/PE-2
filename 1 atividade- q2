@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+int primo(int n){
+	int count=0,i;
+	for(i=1;i<=n;i++){
+		if(n % i == 0){
+			count++;
+		}
+	}
+	if (count == 2){
+		return 1;
+	}
+	else{
+		return 0;
+	}
+}
+
+
+
+int main()
+{
+	int numero,validar,count = 0;
+	float soma=0;
+	printf("Digite o numero: \n");
+	scanf("%d",&numero);
+	while(numero != -1){
+		while(numero != -1 && numero <0){
+			printf("O numero %d deve ser desprezado\n",numero);
+			scanf("%d",&numero);
+		}
+	validar = primo(numero);
+	if(validar == 1){
+		soma += numero;
+		count++;
+	}
+		
+	printf("Digite o numero: \n");
+	scanf("%d",&numero);
+	}
+	if(soma == 0){
+		printf("Nao foi fornecido nenhum numero primo\n");
+	}
+	else
+	{
+	printf("Media dos numeros primos capturados: %lf\n",soma/count);
+	}
+	return 0;
+}
