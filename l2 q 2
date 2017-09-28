@@ -1,0 +1,141 @@
+#include <stdio.h>
+#include <math.h>
+
+
+
+char valoresHexadecimais(int x){
+	char equivalente;
+	switch(x)
+	{
+	case 10:
+		equivalente = 'A';
+		break;
+	case 11:
+		equivalente = 'B';
+		break;
+	case 12:
+		equivalente = 'C';
+	case 13:
+		equivalente = 'D';
+		break;
+	case 14:
+		equivalente = 'E';
+		break;
+	case 15:
+		equivalente = 'F';
+		break;
+	default:
+		printf("ERRO\n");
+		break;
+	}
+	return equivalente;
+}
+
+
+int converterDecimalParaBinario(int valor, int binario[20]){
+	int resto,i=0,aux[20],j;
+	while(valor >= 1){
+		resto = valor % 2;
+		valor = valor /2;
+		aux[i] = resto;
+		printf("%d",aux[i]);
+		i++;
+	}
+	printf("\n");
+// Inverter
+	
+}
+
+
+void converterDecimalParaOctal(int valor){
+	int resto,i=0,aux[20],j,vetor[20];
+	while(valor >= 1){
+		resto = valor % 8;
+		valor = valor /8;
+		vetor[i] = resto;
+		i++;
+		printf("%d",aux[i]);
+	}	
+}
+void converterDecimalParaHexaDecimal(int valor){
+	int resto,i=0,j;
+	char aux[20];
+	char restoHexa;
+	while(valor >= 1){
+		resto = valor % 16;
+		printf("resto = %d\n",resto);
+		valor = valor /16;
+		if(resto >= 10){
+			restoHexa = valoresHexadecimais(resto);
+			aux[i] = restoHexa;
+		}
+		else{
+			aux[i] = resto;	
+		}
+		i++;
+		printf("%d",aux[i]);
+	}	
+}
+	
+void converterBinarioparaDecimal(int valor){
+	int resto,i=0,aux[20];
+	
+}
+
+
+	
+void converterOctalparaDecimal(int valor){
+	
+	
+}
+
+	
+void converterHexaparaDecimal(int valor){
+	
+	
+}
+
+
+
+
+
+int main()
+{
+	/*
+	B  -> D 
+	O  -> D 
+	D  -> todos
+	H  -> D 
+	*/
+	char base;
+	int numero,i,binario[20];
+	
+	scanf("%d",&numero);
+	scanf(" %c",&base);
+	while(numero != 0){
+		switch(base){
+		case 'B':
+		//	();
+			break;
+		case 'O':
+			break;
+		case 'D' :
+			converterDecimalParaBinario(numero,binario);
+			break;
+		case 'H':
+			converterDecimalParaHexaDecimal(numero);
+			break;
+		default:
+			break;
+		}
+		/*
+		printf("Em binario:");
+		for(i=0;i<20;i++){
+			printf("%d",binario[i]);
+		}
+		printf("\n");
+		*/
+		scanf("%d",&numero);
+	}
+	return 0;
+}
