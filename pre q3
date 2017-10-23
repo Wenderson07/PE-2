@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+int N;
+void multVetorMatriz (int v[ ], int A[ ][N], int w[ ]){
+	int i,j;
+	for(i=0;i<N;i++){
+		int soma = 0;
+		for(j=1;j<N;j++){
+			soma += A[i][j];
+		}
+		w[i] = (v[i] * A[i][0]) + soma;
+		printf("W[%d] = %d\n",i,w[i]);	
+	}
+	
+}
+
+
+
+int main()
+{
+	int i,j;
+	printf("Digite o valor N para preencher o vetor e a matriz");
+	scanf("%d",&N);
+	int vetor[N],matriz[N][N],w[N];
+	printf("Preenchar o vetor v:\n");
+	for(i=0;i<N;i++){
+		scanf("%d",&vetor[i]);
+	}
+	for(i=0;i<N;i++){
+		for(j=0;j<N;j++){
+			printf("Preencha o espaço da matriz[%d][%d] ",i,j);
+			scanf("%d",&matriz[i][j]);
+	}
+	}
+	multVetorMatriz(vetor,matriz,w);
+	
+	return 0;
+}
