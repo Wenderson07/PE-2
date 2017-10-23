@@ -1,0 +1,66 @@
+#include <stdio.h>
+
+typedef struct 
+{
+	int numeroDaMesa;
+	int lugaresLivres;
+}treserva;
+
+void inicializar(treserva mesas[30]){
+	int i;
+	int j = 100;
+	for(i =0;i<=30;i++){
+		mesas[i].numeroDaMesa = j; 
+		mesas[i].lugaresLivres = 5;
+		j++;
+	}
+}
+
+void reserva(treserva mesas[30],int numero,int quantidade){
+		int i;
+	   	numero = numero -100;
+	   	if(quantidade <= 5){
+			if(mesas[numero].lugaresLivres < quantidade){
+				printf("Nao foi possivel realizar sua reserva.\nAs mesas que possuem %d lugares disponiveis sao: \n",quantidade);
+				for(i =0;i<30;i++){
+					if(mesas[i].lugaresLivres >= quantidade){
+						printf("Mesa %d - Num de lugares livres: %d\n",i+100,mesas[i].lugaresLivres);
+					}
+				}
+			}else{
+				mesas[numero].lugaresLivres -= quantidade;
+				printf("Reserva Ok. Mesa %d, numero de cadeiras reservadas: %d.\n",numero+100,quantidade);
+			} 
+		}else
+		{
+			printf("Quantidade de lugares pedidos excede o limite da mesa!\n");
+		}	         
+}
+
+void menu(treserva mesas[30]){
+	int numeroParaReservar,quantidade;
+	int *lugaresOcupados =0;
+	printf("Entre com o codigo da mesa que deseja reservar (entre 100 e 129) ou 0 para terminar:");
+	scanf("%d",&numeroParaReservar);
+	while(numeroParaReservar != 0 || lugaresOcupados == 150){	// Validação do numero da mesa
+		if(numeroParaReservar <100 || numeroParaReservar >= 130){
+			while(numeroParaReservar <100 || numeroParaReservar >= 130){
+				printf("Digite um numero valido! 100 a 129 ou 0 para terminar.\n");
+				scanf("%d",numeroParaReservar);}
+		}
+		printf("Entre com a quantidade de lugares que deseja : ");	
+		scanf("%d",&quantidade);   	
+		reserva(mesas,numeroParaReservar,quantidade);
+		printf("Entre com o codigo da mesa que deseja reservar (entre 100 e 129) ou 0 para terminar:");
+	   	scanf("%d",&numeroParaReservar);
+	}
+	
+}
+
+int main()
+{
+	treserva  mesas[30];
+	inicializar(mesas);
+	menu(mesas);
+	return 0;
+}
